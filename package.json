@@ -1,0 +1,11 @@
+{
+  "name": "zeroendecjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Krzysztof Piekarczyk <krzys@piekarczyk.eu>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k-piekarczyk/zeroendecjs"
+  }
+}
