@@ -49,3 +49,7 @@ const stringToZeroWidth = string =>
 const zeroWidthToString = zeroWidth =>
   binaryToString(zeroWidthToBinary(zeroWidth));
 
+module.exports = {
+  stringToZeroWidth,
+  zeroWidthToString
+}
