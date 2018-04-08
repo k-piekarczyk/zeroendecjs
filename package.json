@@ -7,5 +7,14 @@
     "type": "git",
     "url": "https://github.com/k-piekarczyk/zeroendecjs"
   },
-  "description": "A simple JS library that encodes strings to zero width chars, and pulls encoded strings from text."
+  "description": "A simple JS library that encodes strings to zero width chars, and pulls encoded strings from text.",
+  "scripts": {
+    "build": "babel src/ -d lib/",
+    "prepublish": "yarn run build"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.69.0"
+  }
 }
