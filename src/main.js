@@ -78,8 +78,10 @@ const zeroWidthToBinary: string = (string: string) =>
 const stringToZeroWidth: string = (string: string) =>
   binaryToZeroWidth(stringToBinary(string));
 
-const zeroWidthToString: string = (zeroWidth: string) =>
-  binaryToString(zeroWidthToBinary(zeroWidth));
+const zeroWidthToString: string = (zeroWidth: string) => {
+  if(zeroWidth.length > 0)  return binaryToString(zeroWidthToBinary(zeroWidth));
+  else return "";
+};
 
 const fingerprintText: string = (text: string, secret: string) => {
   let textArr = text.split("");
@@ -94,26 +96,27 @@ const fingerprintText: string = (text: string, secret: string) => {
 
   let textNoSpace: string[] = text.split(" ");
 
-  if (numOfSpaces > encsec.length) {
-    for(let i=0; i < encsec.length; i++) {
+  if (numOfSpaces === 0) {
+    result = encsec + text;
+  } else if (numOfSpaces > encsec.length) {
+    for (let i = 0; i < encsec.length; i++) {
       result += textNoSpace[0] + encsec.charAt(i) + " ";
       textNoSpace.splice(0, 1);
     }
     result += textNoSpace.join(" ");
   } else {
-    let encsecArr = chunkify(encsec.split(""), numOfSpaces, true)
-      .map(el => el.join(""));
-      for (let i=0; i < encsecArr.length; i++) {
-        result += textNoSpace[0] + encsecArr[i] + " ";
-        textNoSpace.splice(0, 1);
-      }
-      result += textNoSpace.join(" ");
+    let encsecArr = chunkify(encsec.split(""), numOfSpaces, true).map(el =>
+      el.join("")
+    );
+    for (let i = 0; i < encsecArr.length; i++) {
+      result += textNoSpace[0] + encsecArr[i] + " ";
+      textNoSpace.splice(0, 1);
+    }
+    result += textNoSpace.join(" ");
   }
 
   return result;
 };
-
-console.log("Test:", fingerprintText("Hello My Beautiful World", "krospos"));
 
 module.exports = {
   stringToZeroWidth,
